@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<familytree>
+  <name>Freddy</name>
+  <father>
+    <name>Father 1</name>
+    <father>
+      <name>Father 2</name>
+    </father>
+    <mother>
+      <name>Mother 2</name>
+    </mother>
+  </father>
+  <mother>
+    <name>Mother 1</name>
+    <father>
+      <name>Father 2</name>
+    </father>
+    <mother>
+      <name>Mother 2</name>
+    </mother>
+  </mother>
+</familytree>
