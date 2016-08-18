@@ -1,35 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Stal_Rondo", "Stal_Rondo\", "{2B8FD9F9-0895-417C-B335-23A1FDC6550E}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_50773"
-		Debug.AspNetCompiler.PhysicalPath = "Stal_Rondo\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50773\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_50773"
-		Release.AspNetCompiler.PhysicalPath = "Stal_Rondo\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50773\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "50773"
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StalRondo", "StalRondo\StalRondo.csproj", "{D368FE75-578E-4727-9C5D-892629A93AAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StalRondo.Tests", "StalRondo.Tests\StalRondo.Tests.csproj", "{63C939CE-ACF7-45C4-82C2-7DFE7C4B3FED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2B8FD9F9-0895-417C-B335-23A1FDC6550E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B8FD9F9-0895-417C-B335-23A1FDC6550E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D368FE75-578E-4727-9C5D-892629A93AAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D368FE75-578E-4727-9C5D-892629A93AAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D368FE75-578E-4727-9C5D-892629A93AAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D368FE75-578E-4727-9C5D-892629A93AAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63C939CE-ACF7-45C4-82C2-7DFE7C4B3FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C939CE-ACF7-45C4-82C2-7DFE7C4B3FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C939CE-ACF7-45C4-82C2-7DFE7C4B3FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C939CE-ACF7-45C4-82C2-7DFE7C4B3FED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
