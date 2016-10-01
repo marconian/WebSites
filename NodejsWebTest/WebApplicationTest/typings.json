@@ -1,0 +1,12 @@
+{
+  "globalDependencies": {
+    "bootstrap": "registry:dt/bootstrap#3.3.5+20160619023404",
+    "core-js": "registry:dt/core-js#0.0.0+20160725163759",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "node": "registry:dt/node#6.0.0+20160818175514",
+    "reflect-metadata": "registry:dt/reflect-metadata#0.0.0+20160630155503",
+    "systemjs": "registry:dt/systemjs#0.19.29+20160702105636",
+    "typescript": "registry:dt/typescript#0.4.0+20160317120654",
+    "zone.js": "registry:dt/zone.js#0.0.0+20160316155526"
+  }
+}

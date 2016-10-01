@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using StalRondo.DAL;
 using StalRondo.Models;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace StalRondo.Controllers
 {
@@ -18,8 +21,44 @@ namespace StalRondo.Controllers
         // GET: Horse
         public ActionResult Index()
         {
-            var herd = db.Herd.Include(h => h.Genealogy);
-            return View(herd.ToList());
+            return View(db.Herd.ToList());
+        }
+        public FileStreamResult ProfilePicture(int? id, Guid profilePictureID)
+        {
+            if (id == null || profilePictureID == null) return null;
+            Horse horse = db.Herd.Find(id);
+            Picture picture = horse.Pictures.FirstOrDefault(pic => pic.PictureID == horse.ProfilePictureID);
+            if (picture == null) return null;
+
+            MemoryStream stream;
+            Image img;
+
+            using (stream = new MemoryStream(picture.Data))
+            {
+                img = Image.FromStream(stream);
+
+                switch (img.Width <= img.Height)
+                {
+                    case true:
+                        img = ImgHandler.CropImage(img, new Rectangle(0, 0, img.Width, img.Width));
+                        break;
+                    case false:
+                        img = ImgHandler.CropImage(img, new Rectangle(0, 0, img.Height, img.Height));
+                        break;
+                }
+
+                img = ImgHandler.ResizeImage(img, 200, 200);
+            }
+
+            using (stream = new MemoryStream())
+            {
+                img.Save(stream, ImageFormat.Jpeg);
+                stream.Position = 0;
+
+                return new FileStreamResult(stream, "image/jpeg");
+            }
+
+                
         }
 
         // GET: Horse/Details/5
@@ -40,7 +79,6 @@ namespace StalRondo.Controllers
         // GET: Horse/Create
         public ActionResult Create()
         {
-            ViewBag.HorseID = new SelectList(db.GenealogyTree, "HorseID", "HorseID");
             return View();
         }
 
@@ -49,7 +87,7 @@ namespace StalRondo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HorseID,Name,Gender,BirthDate")] Horse horse)
+        public ActionResult Create([Bind(Include = "HorseID,ProfilePictureID,Name,Gender,BirthDate")] Horse horse)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +96,6 @@ namespace StalRondo.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HorseID = new SelectList(db.GenealogyTree, "HorseID", "HorseID", horse.HorseID);
             return View(horse);
         }
 
@@ -74,7 +111,6 @@ namespace StalRondo.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HorseID = new SelectList(db.GenealogyTree, "HorseID", "HorseID", horse.HorseID);
             return View(horse);
         }
 
@@ -83,7 +119,7 @@ namespace StalRondo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HorseID,Name,Gender,BirthDate")] Horse horse)
+        public ActionResult Edit([Bind(Include = "HorseID,ProfilePictureID,Name,Gender,BirthDate")] Horse horse)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +127,6 @@ namespace StalRondo.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.HorseID = new SelectList(db.GenealogyTree, "HorseID", "HorseID", horse.HorseID);
             return View(horse);
         }
 

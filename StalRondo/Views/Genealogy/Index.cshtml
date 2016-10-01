@@ -1,0 +1,48 @@
+﻿@model IEnumerable<StalRondo.Models.Genealogy>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <a href="#" data-toggle="modal" data-target="#Details" onclick="loadDetailsModal(event, '@Url.Action("Details", new { id = item.HorseID })');">
+            <div class="well text-center">
+                <strong>@Html.DisplayFor(modelItem => item.Horse.Name)</strong>
+            </div>
+        </a>
+
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.HorseID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.HorseID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.HorseID })*@
+    }
+</div>
+<div class="modal fade" id="Details" tabindex="-1" role="dialog" aria-labelledby="Details-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="_DetailsPartial"></div>
+    </div>
+</div>
+<script>
+    function loadDetailsModal(e, url) {
+        var details  = $('#_DetailsPartial');
+        details.empty();
+
+        var request = $.get(url);
+        request.success(function (html){
+            if(html){
+                details.html(html);
+            }
+        });
+        request.error(function (err){
+            if(err){
+                console.error(err);
+            }
+        });
+    }
+</script>

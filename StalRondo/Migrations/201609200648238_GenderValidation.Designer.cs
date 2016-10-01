@@ -7,13 +7,13 @@ namespace StalRondo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class BasicDataSeed : IMigrationMetadata
+    public sealed partial class GenderValidation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(BasicDataSeed));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(GenderValidation));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608181357303_BasicDataSeed"; }
+            get { return "201609200648238_GenderValidation"; }
         }
         
         string IMigrationMetadata.Source

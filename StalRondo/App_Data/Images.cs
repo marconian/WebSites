@@ -179,7 +179,7 @@ public class ImgHandler : ImgBase
     /// <param name="image">The image to crop.</param>
     /// <param name="cropArea">The measures to crop to.</param>
     /// <returns>The cropped image.</returns>
-    public static Image cropImage(Image image, Rectangle cropArea)
+    public static Image CropImage(Image image, Rectangle cropArea)
     {
         Bitmap bmpImage = new Bitmap(image);
         return bmpImage.Clone(cropArea, bmpImage.PixelFormat);

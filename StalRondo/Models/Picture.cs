@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
@@ -8,10 +9,10 @@ namespace StalRondo.Models
 {
     public class Picture
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PictureID { get; set; }
+        [Column(Order = 0), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid PictureID { get; set; }
 
-        [ForeignKey("Horse")]
+        [Column(Order = 1), Key, ForeignKey("Horse")]
         public int HorseID { get; set; }
 
         public string Description { get; set; }

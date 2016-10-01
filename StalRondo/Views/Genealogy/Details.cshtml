@@ -1,0 +1,68 @@
+﻿@model StalRondo.ViewModels.GenealogyTree
+
+@{
+    ViewBag.Title = "Details";
+    ViewBag.MaxLevel = 2;
+    List<List<StalRondo.ViewModels.GenealogyTree>> levels = new List<List<StalRondo.ViewModels.GenealogyTree>>();
+    levels.Add(new List<StalRondo.ViewModels.GenealogyTree> { Model });
+
+    for (int level = 1; level <= ViewBag.MaxLevel; level++)
+    {
+
+        foreach (StalRondo.ViewModels.GenealogyTree item in levels[level - 1])
+        {
+            if (levels.Count - 1 < level)
+            {
+                levels.Add(new List<StalRondo.ViewModels.GenealogyTree>());
+            }
+
+            if (item != null)
+            {
+                levels[level].Add(item.Father);
+                levels[level].Add(item.Mother);
+            }
+            else
+            {
+                levels[level].Add(null);
+                levels[level].Add(null);
+            }
+        }
+    }
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h2 class="modal-title" id="Details-label">@Html.DisplayNameFor(model => model.Horse.Horse.Name)</h2>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12 well text-center">
+            @Html.DisplayFor(model => model.Horse.Horse.Name)
+        </div>
+    </div>
+
+    @for (int level = 1; level <= ViewBag.MaxLevel; level++)
+    {
+        int cells = level + level;
+        int grid = 12 / cells;
+
+        <div class="row">
+            @for (int cell = 0; cell < cells; cell++)
+                {
+                <div class="col-md-@grid well text-center">
+                    @if (levels[level][cell] != null)
+                    {
+                        <a href="#" data-toggle="modal" data-target="#Details" onclick="loadDetailsModal(event, '@Url.Action("Details", new { id = levels[level][cell].Horse.Horse.HorseID })');">
+                            @levels[level][cell].Horse.Horse.Name
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Horse.HorseID })
+</div>

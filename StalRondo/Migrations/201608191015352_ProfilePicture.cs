@@ -3,7 +3,7 @@ namespace StalRondo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class BasicDataSeed : DbMigration
+    public partial class ProfilePicture : DbMigration
     {
         public override void Up()
         {
@@ -11,15 +11,13 @@ namespace StalRondo.Migrations
                 "dbo.Genealogy",
                 c => new
                     {
-                        HorseID = c.Int(nullable: false, identity: true),
-                        FatherID = c.Int(nullable: true),
-                        MotherID = c.Int(nullable: true),
+                        HorseID = c.Int(nullable: false),
+                        FatherID = c.Int(),
+                        MotherID = c.Int(),
                     })
                 .PrimaryKey(t => t.HorseID)
-                .ForeignKey("dbo.Horse", t => t.HorseID)
                 .ForeignKey("dbo.Horse", t => t.FatherID)
                 .ForeignKey("dbo.Horse", t => t.MotherID)
-                .Index(t => t.HorseID)
                 .Index(t => t.FatherID)
                 .Index(t => t.MotherID);
             
@@ -28,6 +26,7 @@ namespace StalRondo.Migrations
                 c => new
                     {
                         HorseID = c.Int(nullable: false),
+                        ProfilePictureID = c.Guid(),
                         Name = c.String(),
                         Gender = c.String(),
                         BirthDate = c.DateTime(nullable: false),
@@ -40,12 +39,12 @@ namespace StalRondo.Migrations
                 "dbo.Picture",
                 c => new
                     {
-                        PictureID = c.Int(nullable: false, identity: true),
+                        PictureID = c.Guid(nullable: false, identity: true, defaultValueSql: "newsequentialid()"),
                         HorseID = c.Int(nullable: false),
                         Description = c.String(),
                         Data = c.Binary(nullable: false),
                     })
-                .PrimaryKey(t => t.PictureID)
+                .PrimaryKey(t => new { t.PictureID, t.HorseID })
                 .ForeignKey("dbo.Horse", t => t.HorseID, cascadeDelete: true)
                 .Index(t => t.HorseID);
             
@@ -54,7 +53,6 @@ namespace StalRondo.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.Genealogy", "MotherID", "dbo.Horse");
-            DropForeignKey("dbo.Genealogy", "HorseID", "dbo.Horse");
             DropForeignKey("dbo.Genealogy", "FatherID", "dbo.Horse");
             DropForeignKey("dbo.Picture", "HorseID", "dbo.Horse");
             DropForeignKey("dbo.Horse", "HorseID", "dbo.Genealogy");
@@ -62,7 +60,6 @@ namespace StalRondo.Migrations
             DropIndex("dbo.Horse", new[] { "HorseID" });
             DropIndex("dbo.Genealogy", new[] { "MotherID" });
             DropIndex("dbo.Genealogy", new[] { "FatherID" });
-            DropIndex("dbo.Genealogy", new[] { "HorseID" });
             DropTable("dbo.Picture");
             DropTable("dbo.Horse");
             DropTable("dbo.Genealogy");
