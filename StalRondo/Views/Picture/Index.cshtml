@@ -1,0 +1,30 @@
+﻿@model StalRondo.ViewModels.PictureVM
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <div class="row">
+        <h1>@ViewBag.Title</h1>
+    </div>
+    <div class="row">
+        @using (Ajax.BeginForm("Index", null, new AjaxOptions() { UpdateTargetId = "_Gallery", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, htmlAttributes: new { @class = "form-inline" }))
+        {
+            @Html.DropDownListFor(vm => vm.HorseID, Model.Herd, new { @class = "form-control" })
+            <button type="submit" class="btn btn-info">
+                <span class="fa fa-search"></span>
+            </button>
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info", @innerHTML = "<span class='fa fa-plus'></span>" })
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-3">
+            </div>
+        }
+    </div>
+
+    <div class="row" id="_Gallery">
+        @Html.Partial("Gallery", Model.Pictures)
+    </div>
+</div>

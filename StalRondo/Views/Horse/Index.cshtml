@@ -2,50 +2,64 @@
 
 @{
     ViewBag.Title = "Index";
+    int i = 0;
 }
 
-<h2>Index</h2>
+<h1>Horses</h1>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProfilePictureID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img src="@Url.Action("ProfilePicture", new { id = item.HorseID, profilePictureID = item.ProfilePictureID })" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.HorseID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.HorseID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.HorseID })
-        </td>
-    </tr>
-}
+<div class="container" style="width: 920px;">
+    @{
+        foreach (var item in Model)
+        {
+            if (i == 0)
+            {
+                @Html.Raw("<div class=\"row\">")
+            }
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-body" style="height: 200px; background-position: center; background-repeat: no-repeat;
+                     background-image: url('@Url.Action("ProfilePicture", new { id = item.HorseID, profilePictureID = item.ProfilePictureID })')">
+                        <ul class="list-group">
+                            <li class="list-group-item">@item.Name</li>
+                            <li class="list-group-item">@item.BirthDate</li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer btn-group btn-group-justified">
+                        <a href="@Url.Action("Edit", new { id = item.HorseID })"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="@Url.Action("Details", new { id = item.HorseID })"><span class="glyphicon glyphicon-info-sign"></span></a>
+                        <a href="@Url.Action("Delete", new { id = item.HorseID })"><span class="glyphicon glyphicon-trash"></span></a>
+                    </div>
+                </div>
+            </div>
 
-</table>
+            if (/*i == 3 || */item == Model.Last())
+            {
+                @Html.Raw("</div>")
+
+                i = 0;
+            }
+            i++;
+        }
+    }
+
+    @*<tr>
+            <td>
+                <img src="@Url.Action("ProfilePicture", new { id = item.HorseID, profilePictureID = item.ProfilePictureID })" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+            </td>
+        </tr>*@
+</div>

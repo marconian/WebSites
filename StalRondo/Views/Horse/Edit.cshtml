@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Edit";
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/cropper")
 }
 
 <h2>Edit</h2>
@@ -17,11 +19,12 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.HorseID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProfilePictureID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProfilePictureID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProfilePictureID, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-sm-4 thumbnail">
+                <img id="profile-picture" class="drawing-canvas" src="@Url.Action("ImageFile", "Picture", new { id = Model.HorseID, pictureId = Model.Pictures.FirstOrDefault().PictureID })" />
+            </div>
+            <div class="col-sm-4 thumbnail">
+                <img id="panel-picture" class="drawing-canvas" src="@Url.Action("ProfilePicture", new { id = Model.HorseID, pictureId = Model.Pictures.FirstOrDefault().PictureID })" />
             </div>
         </div>
 
@@ -64,3 +67,35 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    var Cropper = window.Cropper;
+    var image = $('#profile-picture')[0];
+    var image2 = $('#panel-picture')[0];
+
+    var cropper = new Cropper(image, {
+        aspectRatio: 9 / 16,
+        crop: function (e) {
+            console.log(e.detail.x);
+            console.log(e.detail.y);
+            console.log(e.detail.width);
+            console.log(e.detail.height);
+            console.log(e.detail.rotate);
+            console.log(e.detail.scaleX);
+            console.log(e.detail.scaleY);
+        }
+    });
+
+    var cropper2 = new Cropper(image2, {
+        aspectRatio: 1 / 1,
+        crop: function (e) {
+            console.log(e.detail.x);
+            console.log(e.detail.y);
+            console.log(e.detail.width);
+            console.log(e.detail.height);
+            console.log(e.detail.rotate);
+            console.log(e.detail.scaleX);
+            console.log(e.detail.scaleY);
+        }
+    });
+</script>

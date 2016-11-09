@@ -33,15 +33,17 @@
         var details  = $('#_DetailsPartial');
         details.empty();
 
-        var request = $.get(url);
-        request.success(function (html){
-            if(html){
-                details.html(html);
-            }
-        });
-        request.error(function (err){
-            if(err){
-                console.error(err);
+        var request = $.ajax(url, {
+            method: "GET",
+            success: function (html){
+                if(html){
+                    details.html(html);
+                }
+            },
+            error: function (err){
+                if(err){
+                    console.error(err);
+                }
             }
         });
     }

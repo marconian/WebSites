@@ -50,15 +50,12 @@ namespace StalRondo.Controllers
                 img = ImgHandler.ResizeImage(img, 200, 200);
             }
 
-            using (stream = new MemoryStream())
-            {
-                img.Save(stream, ImageFormat.Jpeg);
-                stream.Position = 0;
+            stream = new MemoryStream();
+            img.Save(stream, ImageFormat.Jpeg);
+            stream.Position = 0;
 
-                return new FileStreamResult(stream, "image/jpeg");
-            }
+            return new FileStreamResult(stream, "image/jpeg");
 
-                
         }
 
         // GET: Horse/Details/5

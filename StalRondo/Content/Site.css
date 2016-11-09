@@ -26,3 +26,8 @@ textarea {
 .modal-dialog {
     width: 800px;
 }
+
+.drawing-canvas {
+    width: 400px;
+    height: 400px;
+}
