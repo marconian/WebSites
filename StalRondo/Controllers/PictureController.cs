@@ -24,7 +24,7 @@ namespace StalRondo.Controllers
             List<Horse> herd = db.Herd.Where(h => db.Pictures.Select(p => p.HorseID).Contains(h.HorseID)).ToList();
             int id = herd.Min(h => h.HorseID);
 
-            List<Picture> pictures = pictures = db.Pictures.Where(p => p.HorseID == id).ToList();
+            List<Picture> pictures = db.Pictures.Where(p => p.HorseID == id).ToList();
 
             List<SelectListItem> items = new List<SelectListItem>(herd.Select(h => new SelectListItem { Value = h.HorseID.ToString(), Text = h.Name }));
             

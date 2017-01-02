@@ -4,18 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The description of my page" />
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Stal Rondo</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="navbar navbar-light bg-faded">
-        @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <a class="navbar-brand" href="@Url.Action("Index", new { area = "" })">
+            <span class="fa fa-paw fa-2x"></span> Stal Rondo
+        </a>
 
         <ul class="nav navbar-nav">
             <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
             <li class="nav-item">@Html.ActionLink("Horse", "Index", "Horse", null, new { @class = "nav-link" })</li>
             <li class="nav-item">@Html.ActionLink("Picture", "Index", "Picture", null, new { @class = "nav-link" })</li>
+            <li class="nav-item">@Html.ActionLink("NewsPaper", "Index", "NewsPaper", null, new { @class = "nav-link" })</li>
             <li class="nav-item">@Html.ActionLink("Genealogy", "Index", "Genealogy", null, new { @class = "nav-link" })</li>
             <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
             <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>

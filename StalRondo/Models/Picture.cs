@@ -12,7 +12,7 @@ namespace StalRondo.Models
         [Column(Order = 0), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid PictureID { get; set; }
 
-        [Column(Order = 1), Key, ForeignKey("Horse")]
+        [Column(Order = 1), ForeignKey("Horse")]
         public int HorseID { get; set; }
 
         public string Description { get; set; }

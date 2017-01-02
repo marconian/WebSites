@@ -13,6 +13,8 @@ namespace StalRondo.DAL
         public DbSet<Horse> Herd { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Genealogy> GenealogyTree { get; set; }
+        public DbSet<Article> NewsPaper { get; set; }
+        public DbSet<User> UserStore { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

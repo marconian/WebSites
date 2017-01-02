@@ -5,7 +5,8 @@
 }
 <div class="container">
     <div class="row">
-        <h1>@ViewBag.Title</h1>
+        <h1 class="display-1">@Html.DisplayFor(model => Model.Pictures.FirstOrDefault().Horse.Name)</h1>
+        <p class="lead">@Html.DisplayFor(model => Model.Pictures.FirstOrDefault().Horse.Gender)</p>
     </div>
     <div class="row">
         @using (Ajax.BeginForm("Index", null, new AjaxOptions() { UpdateTargetId = "_Gallery", HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, htmlAttributes: new { @class = "form-inline" }))
@@ -14,16 +15,10 @@
             <button type="submit" class="btn btn-info">
                 <span class="fa fa-search"></span>
             </button>
-            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info", @innerHTML = "<span class='fa fa-plus'></span>" })
-            <div class="col-sm-6">
-            </div>
-            <div class="col-sm-3">
-            </div>
-            <div class="col-sm-3">
-            </div>
+            <a href="@Url.Action("Create", new { /* id=item.PrimaryKey */ })" class="btn btn-primary"><span class='fa fa-plus'></span> Toevoegen</a>
         }
     </div>
-
+    <hr class="my-2" />
     <div class="row" id="_Gallery">
         @Html.Partial("Gallery", Model.Pictures)
     </div>

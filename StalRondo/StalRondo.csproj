@@ -145,6 +145,7 @@
     <Compile Include="Controllers\GenealogyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HorseController.cs" />
+    <Compile Include="Controllers\NewsPaperController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="DAL\StableContext.cs" />
     <Compile Include="DAL\StableInitializer.cs" />
@@ -163,12 +164,19 @@
     <Compile Include="Migrations\201610010723097_HorseGeanologyRelationChange.Designer.cs">
       <DependentUpon>201610010723097_HorseGeanologyRelationChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611150639029_AddedUserAndArticle.cs" />
+    <Compile Include="Migrations\201611150639029_AddedUserAndArticle.Designer.cs">
+      <DependentUpon>201611150639029_AddedUserAndArticle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\Genealogy.cs" />
+    <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Horse.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\HorseEnums.cs" />
+    <Compile Include="Utilities\Password.cs" />
     <Compile Include="ViewModels\GenealogyTree.cs" />
     <Compile Include="ViewModels\PictureVM.cs" />
   </ItemGroup>
@@ -177,8 +185,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\modal-image.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Images\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\At_Last_Oneliner.jpg" />
@@ -1569,9 +1578,9 @@
     <Content Include="Views\Horse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Images\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Images\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Images\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <Content Include="node_modules\.bin\marked" />
     <Content Include="node_modules\.bin\marked.cmd" />
@@ -1897,6 +1906,11 @@
     <Content Include="Views\Picture\Edit.cshtml" />
     <Content Include="Views\Picture\Index.cshtml" />
     <Content Include="Views\Picture\Gallery.cshtml" />
+    <Content Include="Views\NewsPaper\Create.cshtml" />
+    <Content Include="Views\NewsPaper\Delete.cshtml" />
+    <Content Include="Views\NewsPaper\Details.cshtml" />
+    <Content Include="Views\NewsPaper\Edit.cshtml" />
+    <Content Include="Views\NewsPaper\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608191015352_ProfilePicture.resx">
@@ -1907,6 +1921,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610010723097_HorseGeanologyRelationChange.resx">
       <DependentUpon>201610010723097_HorseGeanologyRelationChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611150639029_AddedUserAndArticle.resx">
+      <DependentUpon>201611150639029_AddedUserAndArticle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

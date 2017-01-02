@@ -36,8 +36,14 @@
 </div>
 <div class="modal-body">
     <div class="row">
-        <div class="col-md-12 well text-center">
-            @Html.DisplayFor(model => model.Horse.Horse.Name)
+        <div class="col-md-12">
+            <div class="card text-center">
+                <div class="card-block">
+                    <div class="card-text">
+                        @Html.DisplayFor(model => model.Horse.Horse.Name)
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -49,20 +55,24 @@
         <div class="row">
             @for (int cell = 0; cell < cells; cell++)
                 {
-                <div class="col-md-@grid well text-center">
+                <div class="col-md-@grid">
                     @if (levels[level][cell] != null)
                     {
-                        <a href="#" data-toggle="modal" data-target="#Details" onclick="loadDetailsModal(event, '@Url.Action("Details", new { id = levels[level][cell].Horse.Horse.HorseID })');">
-                            @levels[level][cell].Horse.Horse.Name
-                        </a>
+                        <div class="card text-center">
+                            <div class="card-block">
+                                <a class="card-link" href="#" data-toggle="modal" data-target="#Details" onclick="loadDetailsModal(event, '@Url.Action("Details", new { id = levels[level][cell].Horse.Horse.HorseID })');">
+                                    @levels[level][cell].Horse.Horse.Name
+                                </a>
+                            </div>
+                        </div>
                     }
                 </div>
+                }
+            </div>
             }
         </div>
-    }
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Horse.HorseID })
-</div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Horse.HorseID })
+        </div>

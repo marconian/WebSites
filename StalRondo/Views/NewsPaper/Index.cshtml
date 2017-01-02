@@ -1,0 +1,30 @@
+﻿@model IEnumerable<StalRondo.Models.Article>
+@{ 
+    ViewBag.Title = "NewsPaper";
+}
+
+<h1 class="page-header">Nieuws</h1>
+<section>
+    @foreach (var item in Model)
+    {
+        <article class="card">
+            <header class="card-block">
+                <h1 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h1>
+                <small class="card-subtitle text-muted">
+                    Door @Html.DisplayFor(modelItem => item.Author.FirstName) @Html.DisplayFor(modelItem => item.Author.SurName) op @item.PublishDate.ToLongDateString() om @item.PublishDate.ToShortTimeString()
+                </small>
+            </header>
+            <div class="card-block">
+                <div class="card-text">
+                    @Html.Raw(item.Content)
+                </div>
+            </div>
+            @if (item.Sources != null && item.Sources.Count > 0)
+                {
+                <footer class="card-footer">
+                    @Html.DisplayFor(modelItem => string.Join("; ", item.Sources))
+                </footer>
+            }
+        </article>
+    }
+</section>
